@@ -13,11 +13,11 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file SampleApp/Dockerfile --tag sampleapp:latest
     
-    - uses: elstudio/action-install-azure-cli@v1
     - name: Azure Login
       uses: Azure/login@v1.4.6
       with:
         creds:  ${{ secrets.AZURE_CREDENTIALS  }}
+        subscription-id: 3bd54f98-8de8-4dd8-bfe0-acf49e7cb725
     
     - name: Deploy to Azure Container Instances
       uses: Azure/aci-deploy@v1
