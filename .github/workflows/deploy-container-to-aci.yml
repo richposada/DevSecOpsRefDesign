@@ -28,9 +28,13 @@ jobs:
         docker push ghrefacr.azurecr.us/sampleapp:${{github.run_number}}
         docker push ghrefacr.azurecr.us/sampleapp:latest
     
-    
+    - name: Azure Login
+      uses: Azure/login@v1.4.6
+      with:
+        environment: AzureUSGovernment
+        creds:  ${{ secrets.AZURE_CREDENTIALS  }}
+        
     - name: 'Deploy to Azure Container Instances'
-    - uses: azure/docker-login@v1
     - uses: 'azure/aci-deploy@v1.1.3'
       with:
           resource-group: ghref-rg
