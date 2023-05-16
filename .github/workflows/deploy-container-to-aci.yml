@@ -14,7 +14,12 @@ jobs:
       with:
         environment: AzureUSGovernment
         creds:  ${{ secrets.AZURE_CREDENTIALS  }}
-        
+      
+    - name: Azure CLI Action
+      uses: Azure/cli@v1.0.7
+      with:
+        inlineScript: az account set --subscription 3bd54f98-8de8-4dd8-bfe0-acf49e7cb725
+    
     - uses: actions/checkout@v3
    
     - name: Docker Images Build And Push
@@ -28,11 +33,7 @@ jobs:
         docker push ghrefacr.azurecr.us/sampleapp:${{github.run_number}}
         docker push ghrefacr.azurecr.us/sampleapp:latest
     
-    - name: Azure Login
-      uses: Azure/login@v1.4.6
-      with:
-        environment: AzureUSGovernment
-        creds:  ${{ secrets.AZURE_CREDENTIALS  }}
+    
         
     - name: 'Deploy to Azure Container Instances'
       uses: 'azure/aci-deploy@v1.1.3'
