@@ -1,0 +1,5 @@
+az group create --name ghref-rg --location USGovVirginia
+
+az deployment group create --resource-group ghref-rg --template-file aci.bicep
+
+az container logs --resource-group ghref-rg --name acilinuxpublicipcontainergroup
