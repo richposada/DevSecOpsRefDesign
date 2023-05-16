@@ -14,7 +14,6 @@ jobs:
       with:
         environment: AzureUSGovernment
         creds:  ${{ secrets.AZURE_CREDENTIALS  }}
-        subscription-id: 3bd54f98-8de8-4dd8-bfe0-acf49e7cb725
         
     - uses: actions/checkout@v3
    
@@ -29,15 +28,17 @@ jobs:
         docker push ghrefacr.azurecr.us/sampleapp:${{github.run_number}}
         docker push ghrefacr.azurecr.us/sampleapp:latest
     
+    
     - name: 'Deploy to Azure Container Instances'
-      uses: 'azure/aci-deploy@v1.1.3'
-      with:
-        resource-group: ghref-rg
-        dns-name-label: sampleapp
-        image: ghrefacr.azurecr.us/sampleapp:${{github.run_number}}
-        registry-login-server: ghrefacr.azurecr.us
-        registry-username: ${{ secrets.REGISTRY_USERNAME }}
-        registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-        name: sampleapp-aci
-        location: 'USGov Virginia'
+    - uses: azure/docker-login@v1
+    -  uses: 'azure/aci-deploy@v1.1.3'
+       with:
+          resource-group: ghref-rg
+          dns-name-label: sampleapp
+          image: ghrefacr.azurecr.us/sampleapp:${{github.run_number}}
+          registry-login-server: ghrefacr.azurecr.us
+          registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          name: sampleapp-aci
+          location: 'USGov Virginia'
        
