@@ -31,8 +31,8 @@ jobs:
     
     - name: 'Deploy to Azure Container Instances'
     - uses: azure/docker-login@v1
-    -  uses: 'azure/aci-deploy@v1.1.3'
-       with:
+    - uses: 'azure/aci-deploy@v1.1.3'
+      with:
           resource-group: ghref-rg
           dns-name-label: sampleapp
           image: ghrefacr.azurecr.us/sampleapp:${{github.run_number}}
