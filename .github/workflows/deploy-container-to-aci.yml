@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file /SampleApp/Dockerfile --tag sampleapp:latest
+      run: docker build . --file ../SampleApp/Dockerfile --tag sampleapp:latest
 
     - name: Deploy to Azure Container Instances
       uses: Azure/aci-deploy@v1
