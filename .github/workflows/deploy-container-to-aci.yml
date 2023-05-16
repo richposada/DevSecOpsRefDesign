@@ -28,5 +28,5 @@ jobs:
         ip-address: Public
         location: USGovVirginia
         memory: 1.5
-        name: sampleapp-aci
+        name: acilinuxpublicipcontainergroup
        
