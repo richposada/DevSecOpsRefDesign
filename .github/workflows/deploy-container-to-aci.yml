@@ -24,7 +24,7 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build SampleApp/Dockerfile -t ghrefacr.azurecr.us/sampleapp:${{github.run_number}} -t ghrefacr.azurecr.us/sampleapp:latest
+        docker build SampleApp/. -t ghrefacr.azurecr.us/sampleapp:${{github.run_number}} -t ghrefacr.azurecr.us/sampleapp:latest
         docker push ghrefacr.azurecr.us/sampleapp:${{github.run_number}}
         docker push ghrefacr.azurecr.us/sampleapp:latest
     
