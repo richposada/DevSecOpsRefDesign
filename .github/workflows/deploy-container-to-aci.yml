@@ -14,6 +14,7 @@ jobs:
       with:
         environment: AzureUSGovernment
         creds:  ${{ secrets.AZURE_CREDENTIALS  }}
+        subscription-id: 3bd54f98-8de8-4dd8-bfe0-acf49e7cb725
         
     - uses: actions/checkout@v3
    
