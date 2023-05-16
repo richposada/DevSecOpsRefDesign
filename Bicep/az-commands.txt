@@ -7,3 +7,5 @@ az container logs --resource-group ghref-rg --name acilinuxpublicipcontainergrou
 az ad sp create-for-rbac --name "GitHubGovSPN" --role contributor --scopes /subscriptions/3bd54f98-8de8-4dd8-bfe0-acf49e7cb725/resourceGroups/ghref-rg --sdk-auth
 
 
+
+
