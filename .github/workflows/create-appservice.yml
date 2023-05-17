@@ -23,5 +23,5 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: Bicep/appservice.bicep
-        parameters: 'webAppName=sampleApp2'
+        parameters: 'webAppName=sampleApp'
         failOnStdErr: false
