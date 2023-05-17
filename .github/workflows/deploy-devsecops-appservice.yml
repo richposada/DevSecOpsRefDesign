@@ -66,7 +66,7 @@ jobs:
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
-          
+       
       - name: Azure Login
         uses: Azure/login@v1.4.6
         with:
@@ -81,4 +81,9 @@ jobs:
           package: '${{ env.DOTNET_ROOT }}/myapp'
           resource-group-name: ghref-rg
 
- 
+      - name: OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.7.0
+        with:
+          # Target URL
+          target: https://sampleapp2.azurewebsites.us
+      
