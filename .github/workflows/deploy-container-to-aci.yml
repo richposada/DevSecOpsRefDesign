@@ -14,33 +14,33 @@ jobs:
       uses: Azure/login@v1.4.6
       with:
         creds:  ${{ secrets.AZURE_CREDENTIALS  }}
-        environment: AzureUSGovernment
+        environment: AzureCloud
     
     - uses: actions/checkout@v3
    
     - name: Docker Images Build And Push
       uses: azure/docker-login@v1
       with:
-        login-server: ghrefacr.azurecr.us
+        login-server: ghrefacr.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . --file SampleApp/Dockerfile -t ghrefacr.azurecr.us/sampleapp:${{github.run_number}} -t ghrefacr.azurecr.us/sampleapp:latest
-        docker push ghrefacr.azurecr.us/sampleapp:${{github.run_number}}
-        docker push ghrefacr.azurecr.us/sampleapp:latest
+        docker build . --file SampleApp/Dockerfile -t ghrefacr.azurecr.io/sampleapp:${{github.run_number}} -t ghrefacr.azurecr.io/sampleapp:latest
+        docker push ghrefacr.azurecr.io/sampleapp:${{github.run_number}}
+        docker push ghrefacr.azurecr.io/sampleapp:latest
     
     - name: 'Deploy to Azure Container Instances'
       uses: 'azure/aci-deploy@v1'
       with:
         resource-group: ghref-rg
         dns-name-label: sampleapp
-        image: ghrefacr.azurecr.us/sampleapp:${{github.run_number}}
+        image: ghrefacr.azurecr.io/sampleapp:${{github.run_number}}
         cpu: 1   #Optional
         memory: 0.1   #Optional
         registry-username: ${{ secrets.REGISTRY_USERNAME }}
         registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         name: sampleapp-container
-        location: 'USGovVirginia'
+        location: 'East US'
     
   
 
