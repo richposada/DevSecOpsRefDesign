@@ -68,22 +68,7 @@ jobs:
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
-
-  deploy:
-    permissions:
-      contents: none
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Development'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: .net-app
-
+          
       - name: Azure Login
         uses: Azure/login@v1.4.6
         with:
@@ -95,5 +80,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: '.net-app/**/*.zip'
+          package: '${{ env.DOTNET_ROOT }}/myapp'
           resource-group-name: ghref-rg
+
+ 
