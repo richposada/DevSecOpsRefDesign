@@ -1,10 +1,7 @@
 name: Docker Image CI
 on:
   workflow_dispatch:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+ 
 
 jobs:
   build:
@@ -14,7 +11,7 @@ jobs:
       uses: Azure/login@v1.4.6
       with:
         creds:  ${{ secrets.AZURE_CREDENTIALS  }}
-        environment: AzureCloud
+        environment: AzureUSGovernment
     
     - uses: actions/checkout@v3
    
