@@ -19,11 +19,6 @@ jobs:
     - name: Azure CLI Action
       uses: Azure/cli@v1.0.7
       with:
-        inlineScript: az login --subscription 3bd54f98-8de8-4dd8-bfe0-acf49e7cb725
-        
-    - name: Azure CLI Action
-      uses: Azure/cli@v1.0.7
-      with:
         inlineScript: az account set --subscription 3bd54f98-8de8-4dd8-bfe0-acf49e7cb725
     
     - uses: actions/checkout@v3
